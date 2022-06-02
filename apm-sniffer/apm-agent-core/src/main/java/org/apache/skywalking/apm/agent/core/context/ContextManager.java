@@ -110,6 +110,8 @@ public class ContextManager implements BootService {
             samplingService.forceSampled();
             context = getOrCreate(operationName, true);
             span = context.createEntrySpan(operationName);
+            // 属性注入到Context
+            // 具体来说是peeks span
             context.extract(carrier);
         } else {
             context = getOrCreate(operationName, false);
@@ -131,6 +133,7 @@ public class ContextManager implements BootService {
         operationName = StringUtil.cut(operationName, OPERATION_NAME_THRESHOLD);
         AbstractTracerContext context = getOrCreate(operationName, false);
         AbstractSpan span = context.createExitSpan(operationName, remotePeer);
+        // 属性注入到Carrier
         context.inject(carrier);
         return span;
     }
@@ -138,6 +141,7 @@ public class ContextManager implements BootService {
     public static AbstractSpan createExitSpan(String operationName, String remotePeer) {
         operationName = StringUtil.cut(operationName, OPERATION_NAME_THRESHOLD);
         AbstractTracerContext context = getOrCreate(operationName, false);
+        // 属性注入到Carrier
         return context.createExitSpan(operationName, remotePeer);
     }
 
