@@ -171,6 +171,7 @@ public class BootstrapInstrumentBoost {
                 }
             }
 
+            // 构造器埋点
             if (Objects.nonNull(define.getConstructorsInterceptPoints())) {
                 for (ConstructorInterceptPoint point : define.getConstructorsInterceptPoints()) {
                     generateDelegator(
@@ -178,6 +179,7 @@ public class BootstrapInstrumentBoost {
                 }
             }
 
+            // 静态方法埋点
             if (Objects.nonNull(define.getStaticMethodsInterceptPoints())) {
                 for (StaticMethodsInterceptPoint point : define.getStaticMethodsInterceptPoints()) {
                     if (point.isOverrideArgs()) {

@@ -155,6 +155,7 @@ public class SkyWalkingAgent {
                                                 final ClassLoader classLoader,
                                                 final JavaModule module) {
             LoadedLibraryCollector.registerURLClassLoader(classLoader);
+            // 字节码构建的时候  主要是插件来自定义生成
             List<AbstractClassEnhancePluginDefine> pluginDefines = pluginFinder.find(typeDescription);
             if (pluginDefines.size() > 0) {
                 DynamicType.Builder<?> newBuilder = builder;

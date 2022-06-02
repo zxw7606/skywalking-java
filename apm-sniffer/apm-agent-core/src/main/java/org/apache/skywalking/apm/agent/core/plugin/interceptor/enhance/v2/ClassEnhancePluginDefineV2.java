@@ -129,6 +129,7 @@ public abstract class ClassEnhancePluginDefineV2 extends AbstractClassEnhancePlu
             if (!context.isObjectExtended()) {
                 newClassBuilder = newClassBuilder.defineField(
                     CONTEXT_ATTR_NAME, Object.class, ACC_PRIVATE | ACC_VOLATILE)
+                                                // 实现
                                                  .implement(EnhancedInstance.class)
                                                  .intercept(FieldAccessor.ofField(CONTEXT_ATTR_NAME));
                 context.extendObjectCompleted();
